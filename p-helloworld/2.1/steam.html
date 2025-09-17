@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Game Store</title>
+  <script>
+    window.onload = function() {
+      let releases = document.getElementsByClassName("games")[0].children;
+      console.log(releases);
+
+      let sellers = document.getElementsByClassName("games")[1].children[1];
+      console.log(sellers);
+
+	  let free2Play = document.getElementsByClassName("games")[2].lastElementChild;
+	  console.log(free2Play);
+
+	  let allsellers = document.getElementsByClassName("games")[1].children;
+	  console.log(allsellers);
+
+	  let h1 = document.getElementsByTagName("h1")[0];
+	  console.log(h1);
+
+	  let gameOfTheDay = document.getElementById("game-of-the-day");
+	  console.log(gameOfTheDay);
+
+	  let saleItems = document.getElementsByClassName("sale");
+	  console.log(saleItems);
+    };
+  </script>
+</head>
+
+<body>
+	<h1>Game Store</h1>
+	<div id="game-of-the-day">
+		Fortnight
+	</div>
+	<h2>New Releases</h2>
+	<ul class="games">
+		<li>Doom Eternal</li>
+		<li class="sale">Resident Evil Village</li>
+		<li>Ratchet & Clank: Rift Apart</li>
+		<li>Deathloop</li>
+	</ul>
+	<h2>Top Sellers</h2>
+	<ul class="games">
+		<li>PlayerUnknown's Battlegrounds</li>
+		<li>Grand Theft Auto V</li>
+		<li class="sale">Among Us</li>
+		<li>Minecraft</li>
+	</ul>
+	<h2>Free to Play</h2>
+	<ul class="games">
+		<li class="sale">Dota 2</li>
+		<li>Team Fortress 2</li>
+		<li>Apex Legends</li>
+		<li>Warframe</li>
+	</ul>
+</body>
+
+</html>
