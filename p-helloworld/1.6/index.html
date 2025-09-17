@@ -6,17 +6,18 @@
     <title>Tageszeit</title>
     <script>
         const daytime = new Date().getHours();
+
+        let name = prompt("Wie heisst du?");
         if (daytime < 10) {
-            alert("Guten Morgen!");
+            alert("Guten Morgen " + name + "!");
         } else if (daytime < 20) {
-            alert("Guten Tag!");
+            alert("Guten Tag " + name + "!");
         } else {
-            alert("Guten Abend!");
+            alert("Guten Abend " + name + "!");
         }
     </script>
 </head>
 <body>
-    Bitte geben Sie Ihren Namen ein:
-    <input type="text" id="name" />
+    
 </body>
 </html>

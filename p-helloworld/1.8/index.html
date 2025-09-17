@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Zahlen sammeln</title>
+  <script>
+    let numberArray = [];
+
+    function handlezahleingabe() {
+      while (true) {
+        let eingabe = prompt("Geben Sie eine Zahl zwischen 1 und 100 ein.");
+        if (eingabe.trim() === "") {
+          break;
+        }
+        let zahl = parseInt(eingabe);
+        numberArray.push(zahl);
+        
+      }
+      let summe = 0;
+      for (let i = 0; i < numberArray.length; i++) {
+        summe += numberArray[i];
+      }
+      alert("Summe aller Zahlen: " + summe);
+    }
+
+    window.onload = handlezahleingabe;
+  </script>
+</head>
+<body>
+</body>
+</html>
