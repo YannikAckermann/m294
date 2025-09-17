@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .large {
+            font-size: 2em;
+        }
+    </style>
+    <script>
+        window.onload  = function() {
+            //document.body.style.backgroundColor = "lightgreen";
+            document.querySelector("h1").innerText = "Yannik Pro Hacker";
+            document.querySelector("p").classList.add("large");
+            document.querySelector("ul").appendChild(document.createElement("li")).innerText = "Item 3";
+            document.querySelector("ul").removeChild(document.querySelector("ul").children[1]);
+            document.querySelector("h1").appendChild(document.createElement("img")).src = "https://i.kym-cdn.com/entries/icons/medium/000/053/895/67-kid.jpg";
+            
+            //Extra Aufgaben
+            function background() {
+                return "rgb(" + Math.floor(Math.random()*256) + "," + Math.floor(Math.random()*256) + "," + Math.floor(Math.random()*256) + ")";
+            }
+            document.body.style.backgroundColor = background();
+            function addli() {
+                const liArray = ["Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10", "Item 11", "Item 12", "Item 13"];
+                for (let i = 0; i < liArray.length; i++) {
+                    document.querySelector("ul").appendChild(document.createElement("li")).innerText = liArray[i];
+                }
+            }
+            document.querySelector("ul").appendChild(addli());
+        }
+    </script>
+</head>
+<body>
+    <h1>Platzhalter</h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur maiores ut ab animi dolore? Voluptatem animi aliquid nesciunt optio pariatur voluptatibus porro ullam accusantium. Rerum eaque sequi dolore nihil praesentium?</p>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+</body>
+</html>
