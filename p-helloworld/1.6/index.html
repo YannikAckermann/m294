@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tageszeit</title>
+    <script>
+        const daytime = new Date().getHours();
+        if (daytime < 10) {
+            alert("Guten Morgen!");
+        } else if (daytime < 20) {
+            alert("Guten Tag!");
+        } else {
+            alert("Guten Abend!");
+        }
+    </script>
+</head>
+<body>
+    Bitte geben Sie Ihren Namen ein:
+    <input type="text" id="name" />
+</body>
+</html>
