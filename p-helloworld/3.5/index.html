@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        #shuffle {
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 32px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+            margin: 20px 0;
+        }
+        #shuffle:hover {
+            transform: scale(1.07);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        
+        <div class="gallery">
+            <img src="https://moodle.zli.ch/pluginfile.php/246750/mod_assign/introattachment/0/cup.png?forcedownload=1" alt="Bild 1" id="1" />
+            <img src="https://moodle.zli.ch/pluginfile.php/246750/mod_assign/introattachment/0/cup-open-ball.png?forcedownload=1" alt="Bild 1" id="with-ball" />
+            <img src="https://moodle.zli.ch/pluginfile.php/246750/mod_assign/introattachment/0/cup.png?forcedownload=1" alt="Bild 1" id="3" />
+        </div>
+         <button id="shuffle">shuffle</button>
+        <script>
+            const shuffleButton = document.getElementById('shuffle');
+            const gallery = document.querySelector('.gallery');
+            shuffleButton.onclick = () => {
+                    for (let i = gallery.children.length; i >= 0; i--) {
+                        gallery.appendChild(gallery.children[Math.random() * i | 0]); //wählt einen zufälligen Index zwischen 0 und i-1
+                    }
+                    const hideBallsrc = "https://moodle.zli.ch/pluginfile.php/246750/mod_assign/introattachment/0/cup.png?forcedownload=1";
+                    document.getElementById('with-ball').src = hideBallsrc;
+            }
+            const hitCup = document.getElementsByClassName('gallery')[0];
+            hitCup.onclick = (event) => {
+                const toggleCupNoBallsrc = "https://moodle.zli.ch/pluginfile.php/246750/mod_assign/introattachment/0/cup-open.png?forcedownload=1";
+                const toggleCupWithBallsrc = "https://moodle.zli.ch/pluginfile.php/246750/mod_assign/introattachment/0/cup-open-ball.png?forcedownload=1";
+                // Prüfe, ob ein IMG geklickt wurde
+                if (event.target.tagName === 'IMG') {
+                    if (event.target.id === 'with-ball') {
+                        event.target.src = toggleCupWithBallsrc;
+                        
+                    } else {
+                        event.target.src = toggleCupNoBallsrc;
+                        alert('Leider kein Ball!');
+                        location.reload();
+                    }
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>

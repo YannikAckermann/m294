@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .field {
+            background-color: green;
+            width: 600px;
+            height: 300px;
+        }
+        #football {
+            width: 50px;
+            position: relative;
+            top: 125px;
+            left: 275px;
+            pointer-events: none; 
+        }
+
+    </style>
+    
+    
+<body>
+    <h1 id="counter">0</h1>
+    <button>Click Me!</button>
+    <h2 id="counter2">0</h2>
+    <button id="button2">Click Me Too!</button>
+
+    <div class="field" id="field">
+        <img src="https://moodle.zli.ch/pluginfile.php/246742/mod_assign/introattachment/0/soccer-ball-svgrepo-com.svg?forcedownload=1" alt="football" id="football">
+    </div>
+
+    <script defer>
+        //document.querySelector("button").addEventListener("click", ()  => {
+        //    alert("Hello World");
+        //});
+
+        const counter = document.getElementById("counter");
+        document.querySelector("button").addEventListener("click", ()  => {
+            counter.innerText = parseInt(counter.innerText) + 1;
+        });
+
+        const counter2 = document.getElementById("counter2");
+        document.querySelector("#button2").addEventListener("click", ()  => {
+            counter2.innerText = parseInt(counter2.innerText) + 1 || 1;
+        });
+        const field = document.getElementById("field");
+        const ball = document.getElementById("football");
+
+        field.addEventListener("click", (e) => {
+        const rect = field.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        ball.style.left = x + "px";
+        ball.style.top = y + "px";
+    });
+    </script>
+</body>
+</html>

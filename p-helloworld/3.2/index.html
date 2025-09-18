@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            :root {
+                --color-primary: #1CD761;
+                --color-black: #000000;
+                --color-white: #FFFFFF;
+            }
+
+            html {
+                height: 100%;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100%;
+                background: var(--color-primary);
+                padding: 0 25%;
+                margin: 0;
+            }
+
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 4rem;
+
+                #brand {
+                    font-size: 1.6rem;
+                }
+
+                nav ul {
+                    display: flex;
+                    gap: 0.2rem;
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+
+                    a {
+                        text-decoration: none;
+                        color: var(--color-white);
+                        border: 1px solid var(--color-white);
+                        padding: 0.5em;
+                        border-radius: 2em;
+
+                        &:hover {
+                            color: salmon;
+                        }
+                    }
+                }
+            }
+
+            .gallery {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            main {
+                flex-grow: 1;
+            }
+
+            footer {
+                display: flex;
+                align-items: center;
+                padding: 0 1rem;
+                background-color: #FFFFFF99;
+                border-radius: 16px 16px 0 0;
+                height: 3rem;
+            }
+            button {
+            background-color: transparent;
+            border: solid white;
+            border-radius: 20px;
+            padding: 10px;
+            color: white;
+            justify-content: flex-end;
+        }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <div id="brand">
+                Spoofify
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Top of your birthweek</a></li>
+                    <li><a href="#">Latest releases randomized</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Your spoofed overview</h1>
+            <p>Welcome to Spoofify, <em>the rip-off music streaming service</em> of ICT module 294!</p>
+            <h2>Top of your birthweek</h2>
+            <ol>
+                <li><strong>Jump</strong> by <em>Kris Kross</em></li>
+                <li><strong>Jump</strong> by <em>Kris Kross</em></li>
+                <li><strong>Jump</strong> by <em>Kris Kross</em></li>
+                <li><strong>Jump</strong> by <em>Kris Kross</em></li>
+                <li><strong>Jump</strong> by <em>Kris Kross</em></li>
+            </ol>
+            <h2>Latest releases randomized</h2>
+            <nav>
+                <button id="add-three">add three more </button>
+                <button id="remove-three">remove three </button>
+                <button id="shuffle">shuffle</button>
+            </nav>
+            <div class="gallery">
+                <img src="https://picsum.photos/id/30/200/200" alt="Bild 1" />
+                <img src="https://picsum.photos/id/40/200/200" alt="Bild 1" />
+                <img src="https://picsum.photos/id/10/200/200" alt="Bild 1" />
+                <img src="https://picsum.photos/id/20/200/200" alt="Bild 1" />
+                <img src="https://picsum.photos/id/35/200/200" alt="Bild 1" />
+                <img src="https://picsum.photos/id/60/200/200" alt="Bild 1" />
+            </div>
+        </main>
+        <footer>
+            &copy; 2025 Spooky Example, Inc.
+        </footer>
+        <script>
+            document.getElementById('add-three').onclick = () => {
+                const gallery = document.querySelector('.gallery');
+                for (let i = 0; i < 3; i++) {
+                    const img = document.createElement('img');
+                    const randomId = Math.floor(Math.random() * 100);
+                    img.src = `https://picsum.photos/id/${randomId}/200/200`;
+                    img.alt = `Bild ${randomId}`;
+                    gallery.appendChild(img);
+                }
+            };
+            document.getElementById('remove-three').onclick = () => {
+                const gallery = document.querySelector('.gallery');
+                for (let i = 0; i < 3; i++) {
+                    gallery.removeChild(gallery.firstChild);
+                }
+                    
+                
+            };
+            const Album = document.getElementsByClassName('gallery')[0];
+                document.getElementById('shuffle').onclick = () => {
+                    for (let i = Album.children.length; i >= 0; i--) {
+                        Album.appendChild(Album.children[Math.random() * i | 0]); //wählt einen zufälligen Index zwischen 0 und i-1
+                    }
+                }
+        </script>
+    </body>
+
+</html>
