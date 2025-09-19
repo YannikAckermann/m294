@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden-img {
+            filter: brightness(0);
+            background: #222;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            background: #fff;
+            display: block;
+        }
+        #shuffle {
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 32px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+            margin: 20px 0;
+        }
+        #shuffle:hover {
+            transform: scale(1.07);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="gallery">
+            
+        </div>
+         <button id="shuffle">Start</button>
+    </div>
+    <script>
+        const imgNames = [
+            'ag','ai','ar','be','bl','bs','fr','ge','gl','gr','ju','lu','ne','nw','ow','sg','sh','so','sz','tg','ti','ur','vd','vs','zg','zh'
+        ];
+
+        function shuffleArray(arr) {
+            return arr.sort(() => 0.5 - Math.random());
+        }
+
+        function renderMemory() {
+            // Mische alle Kantone
+            const shuffled = shuffleArray([...imgNames]);
+            // Nimm die ersten 10
+            const selected = shuffled.slice(0, 10);
+            // Erstelle von jedem zwei Bilder
+            let imgTags = [];
+            selected.forEach(name => {
+                imgTags.push(`<img src='./img/img/${name}.png' alt='${name.toUpperCase()}' id='${name}' class='hidden-img'>`);
+                imgTags.push(`<img src='./img/img/${name}.png' alt='${name.toUpperCase()}' id='${name}' class='hidden-img'>`);
+            });
+            // Mische die 20 Karten
+            imgTags = shuffleArray(imgTags);
+            document.querySelector('.gallery').innerHTML = imgTags.join('');
+
+            // Klick-Event für alle Bilder: beim Klick wird die Klasse entfernt
+            document.querySelectorAll('.gallery img').forEach(img => {
+                img.onclick = function() {
+                    img.classList.remove('hidden-img');
+                };
+            });
+        }
+
+        const shuffleButton = document.getElementById('shuffle');
+        shuffleButton.onclick = () => {
+            renderMemory();
+        };
+
+        const pairsArray = [];
+
+        renderMemory();
+    </script>
+</body>
+</html>
