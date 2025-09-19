@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Your Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .rating-container {
+            margin: 40px 0;
+            transform: scale(1.5);
+        }
+
+        .feedback {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            min-height: 30px;
+        }
+
+        .join-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .rating-section {
+            display: none;
+        }
+
+        .rating-section.show {
+            display: block;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .thank-you {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <div class="particle" style="width: 10px; height: 10px; left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="width: 15px; height: 15px; left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="width: 8px; height: 8px; left: 70%; animation-delay: 2s;"></div>
+        <div class="particle" style="width: 12px; height: 12px; left: 80%; animation-delay: 3s;"></div>
+        <div class="particle" style="width: 6px; height: 6px; left: 90%; animation-delay: 4s;"></div>
+    </div>
+
+    <div class="container">
+        <h1>Welcome</h1>
+        <p class="subtitle">Ready to share your experience?</p>
+        
+        <div class="join-container" id="joinSection">
+            <join-button></join-button>
+        </div>
+        
+        <div class="rating-section" id="ratingSection">
+            <h1>Rate Us</h1>
+            <p class="subtitle">How was your experience with our service?</p>
+            
+            <div class="rating-container">
+                <rating-component></rating-component>
+            </div>
+            
+            <div class="feedback" id="feedback">
+                Click on the stars to rate your experience
+            </div>
+        </div>
+    </div>
+    
+    <github-button url="https://github.com/YannikAckermann/m294/tree/main"></github-button>
+    
+    <thankyou-modal id="thankYouModal">
+      <download-component></download-component>
+    </thankyou-modal>
+    
+    <script src="rating-component.js"></script>
+    <script src="thankyou-modal.js"></script>
+    <script src="github-button.js"></script>
+    <script src="join-button.js"></script>
+    
+    <script>
+        // Überwache Join-Button Klick
+        document.addEventListener('DOMContentLoaded', function() {
+            const joinButton = document.querySelector('join-button');
+            const joinSection = document.getElementById('joinSection');
+            const ratingSection = document.getElementById('ratingSection');
+            const ratingComponent = document.querySelector('rating-component');
+            const modal = document.getElementById('thankYouModal');
+            
+            // Lausche auf Join-Button Klick
+            joinButton.addEventListener('join-clicked', function() {
+                // Warte bis die Button-Animation fertig ist (längste Animation: path = 1.8s)
+                setTimeout(() => {
+                    // Verstecke Join-Section und zeige Rating-Section
+                    joinSection.style.display = 'none';
+                    ratingSection.classList.add('show');
+                }, 1200); // 2 Sekunden warten für alle Animationen
+            });
+            
+            // Lausche auf Rating-Änderungen in der Rating-Komponente
+            ratingComponent.addEventListener('change', function(e) {
+                if (e.target.type === 'radio') {
+                    const rating = parseInt(e.target.value);
+                    modal.show(rating);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

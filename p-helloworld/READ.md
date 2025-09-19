@@ -11,7 +11,7 @@
 Ein Accordion wird verwendet, um Inhalte auf einer Website übersichtlich darzustellen, ohne die Seite zu überladen. Es besteht aus mehreren Bereichen, die sich einzeln auf- und zuklappen lassen. So können Nutzer selbst entscheiden, welche Informationen sie sehen wollen. Typische Einsatzgebiete sind FAQs, Navigationselemente oder Detailinformationen, die nur bei Bedarf angezeigt werden sollen.  
 
 **Screenshots:**  
-- **Desktop:** *Hier Screenshot vom Accordion auf Desktop einfügen*  
+- **Desktop:** <img src= https://media.kulturbanause.de/2023/05/accordion-website-komponente.png/>  
 - **Mobile:** *Hier Screenshot vom Accordion auf Smartphone einfügen*  
 
  
